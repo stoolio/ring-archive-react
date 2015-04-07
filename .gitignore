@@ -1,0 +1,10 @@
+node_modules
+
+*.sublime-project
+*.sublime-workspace
+
+# public/js/app.js
+
+# public/css/app.css
+
+public/
