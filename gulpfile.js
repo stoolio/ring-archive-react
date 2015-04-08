@@ -7,65 +7,47 @@ var gulp = require('gulp'),
   browserSync = require('browser-sync'),
   reload = browserSync.reload,
   sass = require('gulp-sass'),
-  reactify = require('reactify');
-
-var dirs = {
-  in: {
-    js: ['./js/index.js'], //entry points, include multiple to create multiple bundles
-    scss: 'scss/app.scss'
-  },
-  out: {
-    root: './public',
-    js: '/js',
-    css: '/css'
-  }
-}
-
-var output = {
-  root: './public',
-  js: '/js',
-  css: '/css'
-}
+  babelify = require('babelify');
 
 var browserifyOpts = {
-  entries: dirs.in.js,
+  entries: ['./js/index.js'],
   debug: true,
-  transform: [reactify],
-  // the opts below are require for watchify
+  transform: [babelify],
+  // the opts below are required for watchify
   cache: {},
   packageCache: {}
 };
 
-var b = watchify(browserify(browserifyOpts));
+var bundler = watchify(browserify(browserifyOpts));
 
 gulp.task('js', bundle);
-b.on('update', bundle);
-b.on('log', gutil.log);
+bundler.on('update', bundle);
+bundler.on('log', gutil.log);
 
 function bundle() {
-  return b.bundle()
+  return bundler.bundle()
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
     .pipe(source('app.js'))
     .pipe(buffer())
-    .pipe(gulp.dest(dirs.out.js))
+    .pipe(gulp.dest('./public/js'))
     .pipe(reload({stream: true}));
 }
 
 gulp.task('sass', function() {
-  gulp.src(dirs.in.scss)
+  gulp.src('scss/app.scss')
     .pipe(sass({
         includePaths: ['node_modules/zurb-foundation-5/scss/'],
         outputStyle: 'nested',
         sourceMap: 'public/css/'
       }))
-    .pipe(gulp.dest(dirs.out.css))
+    .pipe(gulp.dest('./public/css'))
     .pipe(reload({stream: true}));
 });
 
 gulp.task('default', ['sass', 'js'], function() {
   browserSync({
     server: {
-      baseDir: 'public'
+      baseDir: './public'
     }
   });
 
