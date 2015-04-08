@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
-  render: function() {
+const CommentBox = React.createClass({
+  render() {
     return (
       <div className="commentBox">
         Hello, world! I am a CommentBox.
@@ -9,3 +9,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+export default CommentBox;

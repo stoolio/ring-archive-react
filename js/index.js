@@ -1,7 +1,14 @@
-var React = require('react');
-var CommentBox = require('./components/comment-box');
+import React from 'react';
+import Product from './components/Product';
+
+var data = {
+  
+}
 
 React.render(
-  <CommentBox />,
+  <Product url='test.url'
+           title='My ring'
+           imgSrc='/img/ring.jpg'
+           price='2400' />,
   document.getElementById('content')
 );

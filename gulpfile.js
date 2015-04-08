@@ -1,13 +1,13 @@
-var gulp = require('gulp'),
-  gutil = require('gulp-util'),
-  browserify = require('browserify'),
-  watchify = require('watchify'),
-  source = require('vinyl-source-stream'),
-  buffer = require('vinyl-buffer'),
-  browserSync = require('browser-sync'),
-  reload = browserSync.reload,
-  sass = require('gulp-sass'),
-  babelify = require('babelify');
+var gulp = require('gulp');
+var gutil = require('gulp-util');
+var browserify = require('browserify');
+var watchify = require('watchify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
+var sass = require('gulp-sass');
+var babelify = require('babelify');
 
 var browserifyOpts = {
   entries: ['./js/index.js'],
