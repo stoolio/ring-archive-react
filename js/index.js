@@ -1,14 +1,9 @@
 import React from 'react';
-import Product from './components/Product';
+import ProductList from './components/ProductList';
 
-var data = {
-  
-}
+var data = {};
 
 React.render(
-  <Product url='test.url'
-           title='My ring'
-           imgSrc='/img/ring.jpg'
-           price='2400' />,
+  <ProductList />,
   document.getElementById('content')
 );

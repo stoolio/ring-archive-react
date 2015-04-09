@@ -5,15 +5,15 @@ import ProductFooter from './ProductFooter';
 const Product = React.createClass({
   render() {
     return (
-      <article className='engagement-ring'>
-        <ProductHeader />
-        <div className='entry-summary'>
+      <li>
+        <div className='engagement-ring text-center'>
+          <ProductHeader>{this.props.title}</ProductHeader>
           <a href={this.props.url} title={this.props.title}>
             <img src={this.props.imgSrc} />
           </a>
+          <ProductFooter price={this.props.price} />
         </div>
-        <ProductFooter price={this.props.price} />
-      </article>
+      </li>
     );
   }
 

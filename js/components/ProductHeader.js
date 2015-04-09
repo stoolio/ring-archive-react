@@ -3,9 +3,9 @@ import React from 'react';
 const ProductHeader = React.createClass({
   render() {
     return (
-      <header className='entry-header'>
-        <span className='left' />
-      </header>
+      <span className='title'>
+        {this.props.children}
+      </span>
     );
   }
 

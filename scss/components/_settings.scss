@@ -1,0 +1,177 @@
+@import 'foundation/functions';
+
+$base-font-size: 18px;
+
+$rem-base: $base-font-size;
+
+$header-font-family: "neutonregular", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: "droid_sansregular", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+
+$primary-color: #3d84c6;
+$secondary-color: #e7e7e7;
+$alert-color: #f04124;
+$success-color: #43ac6a;
+$warning-color: #f08a24;
+$info-color: #a0d3e8;
+
+// Grid
+
+// $include-html-grid-classes: $include-html-classes;
+// $include-xl-html-grid-classes: false;
+
+$row-width: rem-calc(1000);
+// $column-gutter: rem-calc(30);
+// $total-columns: 12;
+
+// Media Query Ranges
+// $small-range: (0em, 40em);
+// $medium-range: (40.063em, 64em);
+// $large-range: (64.063em, 90em);
+// $xlarge-range: (90.063em, 120em);
+// $xxlarge-range: (120.063em);
+
+$crumb-bg: #fff;
+$crumb-font-size: rem-calc(14);
+$crumb-slash: '>';
+$crumb-link-decor: none;
+
+//
+// TOP BAR
+//
+
+// Background color for the top bar
+$topbar-bg-color: rgba(0,0,0,0);
+$topbar-hover-color: #eee; //scale-color($topbar-bg-color, $lightness: -15%);
+// $topbar-bg: $topbar-bg-color;
+
+// Height and margin
+// $topbar-height: 45px;
+// $topbar-margin-bottom: 0;
+
+// Controlling the styles for the title in the top bar
+// $topbar-title-weight: normal;
+// $topbar-title-font-size: rem-calc(17);
+
+// Style the top bar dropdown elements
+$topbar-dropdown-bg: rgba(0,0,0,0);
+$topbar-dropdown-link-color: #333;
+$topbar-dropdown-link-bg: scale-color($topbar-dropdown-bg, $lightness: -10%);
+// $topbar-dropdown-link-weight: normal;
+// $topbar-dropdown-toggle-size: 5px;
+$topbar-dropdown-toggle-color: #333;
+// $topbar-dropdown-toggle-alpha: 0.4;
+
+// Set the link colors and styles for top-level nav
+$topbar-link-color: #333;
+$topbar-link-color-hover: $topbar-link-color;
+// $topbar-link-color-active: #fff;
+// $topbar-link-color-active-hover: #fff;
+// $topbar-link-weight: normal;
+$topbar-link-font-size: rem-calc(15);
+// $topbar-link-hover-lightness: -10%; // Darken by 10%
+$topbar-link-bg-hover: scale-color(rgb(238,238,248), $lightness: -15%);
+$topbar-link-bg-active: scale-color($primary-color, $lightness: 20%);
+$topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -5%);
+// $topbar-link-font-family: $body-font-family;
+// $topbar-link-text-transform: none;
+// $topbar-link-padding: $topbar-height / 3;
+
+// $topbar-button-font-size: 0.75rem;
+// $topbar-button-top: 7px;
+
+// $topbar-dropdown-label-color: #777;
+// $topbar-dropdown-label-text-transform: uppercase;
+// $topbar-dropdown-label-font-weight: bold;
+// $topbar-dropdown-label-font-size: rem-calc(10);
+// $topbar-dropdown-label-bg: #333;
+
+// Top menu icon styles
+// $topbar-menu-link-transform: uppercase;
+// $topbar-menu-link-font-size: rem-calc(13);
+// $topbar-menu-link-weight: bold;
+$topbar-menu-link-color: #888;
+$topbar-menu-icon-color: #888;
+// $topbar-menu-link-color-toggled: #888;
+// $topbar-menu-icon-color-toggled: #888;
+
+// Transitions and breakpoint styles
+// $topbar-transition-speed: 300ms;
+// Using rem-calc for the below breakpoint causes issues with top bar
+// $topbar-breakpoint: #{upper-bound($medium-range)}; // Change to 9999px for always mobile layout
+// $topbar-media-query: "only screen and (min-width: #{upper-bound($medium-range)})";
+
+// Divider Styles
+// $topbar-divider-border-bottom: solid 1px  scale-color($topbar-bg-color, $lightness: -50%);
+// $topbar-divider-border-top: solid 1px scale-color($topbar-bg-color, $lightness: -50%);
+
+// Sticky Class
+// $topbar-sticky-class: ".sticky";
+// $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
+
+// Forms
+
+// $include-html-form-classes: $include-html-classes;
+
+// We use this to set the base for lots of form spacing and positioning styles
+// $form-spacing: rem-calc(16);
+
+// We use these to style the labels in different ways
+// $form-label-pointer: pointer;
+$form-label-font-size: rem-calc(16);
+// $form-label-font-weight: normal;
+// $form-label-line-height: 1.5;
+// $form-label-font-color: scale-color(#000, $lightness: 30%);
+// $form-label-bottom-margin: 0;
+// $input-font-family: inherit;
+// $input-font-color: rgba(0,0,0,0.75);
+$input-font-size: rem-calc(16);
+// $input-bg-color: #fff;
+// $input-focus-bg-color: scale-color(#fff, $lightness: -2%);
+// $input-border-color: scale-color(#fff, $lightness: -20%);
+// $input-focus-border-color: scale-color(#fff, $lightness: -40%);
+// $input-border-style: solid;
+// $input-border-width: 1px;
+// $input-border-radius: $global-radius;
+// $input-disabled-bg: #ddd;
+// $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+// $input-include-glowing-effect: true;
+
+// We use these to style the fieldset border and spacing.
+// $fieldset-border-style: solid;
+// $fieldset-border-width: 1px;
+// $fieldset-border-color: #ddd;
+// $fieldset-padding: rem-calc(20);
+// $fieldset-margin: rem-calc(18 0);
+
+// We use these to style the legends when you use them
+// $legend-bg: #fff;
+// $legend-font-weight: bold;
+// $legend-padding: rem-calc(0 3);
+
+// We use these to style the prefix and postfix input elements
+// $input-prefix-bg: scale-color(#fff, $lightness: -5%);
+// $input-prefix-border-color: scale-color(#fff, $lightness: -20%);
+// $input-prefix-border-size: 1px;
+// $input-prefix-border-type: solid;
+// $input-prefix-overflow: hidden;
+// $input-prefix-font-color: #333;
+// $input-prefix-font-color-alt: #fff;
+
+// We use these to style the error states for inputs and labels
+// $input-error-message-padding: rem-calc(6 9 9);
+// $input-error-message-top: -1px;
+$input-error-message-font-size: rem-calc(13);
+// $input-error-message-font-weight: normal;
+// $input-error-message-font-style: italic;
+// $input-error-message-font-color: #fff;
+// $input-error-message-font-color-alt: #333;
+
+// We use this to style the glowing effect of inputs when focused
+// $glowing-effect-fade-time: 0.45s;
+// $glowing-effect-color: $input-focus-border-color;
+
+// Select variables
+// $select-bg-color: #fafafa;
+
+$crumb-bg: rgba(0,0,0,0);
+$crumb-border-size: 0 0 1px 0;
