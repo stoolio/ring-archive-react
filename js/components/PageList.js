@@ -2,21 +2,21 @@ import React from 'react';
 
 const PageList = React.createClass({
   render() {
-    var pages = [];
-    var cx = React.addons.classSet;
+    var pages = [],
+        cx = React.addons.classSet,
+        classes;
     for(var i = 0; i < this.props.totalPages; i++) {
-      pages.push(i);
+      pages.push((function(){}(
+
+      )) (
+        <li className={cx({
+          'current': this.props.currentPage === i
+        })}>{i}<li>
+      ));
     }
-    var class;
-    pages.map(function(i) {
-      class = cx({current: (this.props.currentPage === i)});
-      return (
-        <li className={class}>{i}<li>
-      );
-    })
 
     return (
-      <ul className="pagination">
+      <ul className='pagination'>
         {pages}
       </ul>
     );

@@ -1,42 +1,31 @@
 import React from 'react';
+import 'react/addons';
 import Product from './Product';
-import Pagination from './PageList';
+
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 const ProductList = React.createClass({
   getInitialState() {
-    return {page: 0};
-  },
-
-  totalPages() {
-    return Math.ceil(this.props.data.length);
-  },
-
-  pageChange() {
-    return true;
-  },
-
-  productsOnPage() {
-    var offset = 6 * this.page;
-    return this.props.data.slice(offset, offset + 6);
+    return {
+      products: this.props.products,
+      classes: ''
+    };
   },
 
   render() {
-    var products = this.productsOnPage().map(function(product) {
+    let products = this.props.products.map(function(product) {
       return (
-        <Product url={product.url}
-                 title={product.title}
-                 imgSrc={product.imgSrc}
-                 price={product.price} />
+        <Product key={product.sku} url={product.url} productTitle={product.name} imgSrc={product.imgSrc} price={product.price} />
       );
     });
 
     return (
-      <ul id="engagement-ring-archive" className="large-block-grid-3">
+      <ReactCSSTransitionGroup component='ul' transitionName='product' id='engagement-ring-archive' className={'small-block-grid-2 large-block-grid-3' + this.state.classes}>
         {products}
-      </ul>
-      <Pagination totalPages={totalPages} handleClick={this.pageChange} />
+      </ReactCSSTransitionGroup>
     );
   }
+
 });
 
 export default ProductList;

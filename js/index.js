@@ -1,100 +1,121 @@
 import React from 'react';
-import ProductList from './components/ProductList';
+import ProductDisplay from './components/ProductDisplay';
+// import Row from './structure/Row';
 
 var data = [
   {
+    sku: 'A',
     url: '#',
-    title: 'Heart Ring',
-    imgSrc: 'img/ring1.jpg',
-    price: 2400
+    name: 'Heart Ring',
+    imgSrc: 'img/ring01.jpg',
+    price: 1000
   },
   {
+    sku: 'B',
     url: '#',
-    title: 'Oval Ring',
-    imgSrc: 'img/ring2.jpg',
-    price: 2400
+    name: 'Oval Ring',
+    imgSrc: 'img/ring02.jpg',
+    price: 2000
   },
   {
+    sku: 'C',
     url: '#',
-    title: 'Pear Ring',
-    imgSrc: 'img/ring3.jpg',
-    price: 2400
+    name: 'Pear Ring',
+    imgSrc: 'img/ring03.jpg',
+    price: 3000
   },
   {
+    sku: 'D',
     url: '#',
-    title: 'Cushion Ring',
-    imgSrc: 'img/ring4.jpg',
-    price: 2400
+    name: 'Cushion Ring',
+    imgSrc: 'img/ring04.jpg',
+    price: 4000
   },
   {
+    sku: 'E',
     url: '#',
-    title: 'Round Ring',
-    imgSrc: 'img/ring5.jpg',
-    price: 2400
+    name: 'Round Ring',
+    imgSrc: 'img/ring05.jpg',
+    price: 5000
   },
   {
+    sku: 'F',
     url: '#',
-    title: 'Heart Ring',
-    imgSrc: 'img/ring1.jpg',
-    price: 2400
+    name: 'Heart Ring',
+    imgSrc: 'img/ring06.jpg',
+    price: 1500
   },
   {
+    sku: 'G',
     url: '#',
-    title: 'Oval Ring',
-    imgSrc: 'img/ring2.jpg',
-    price: 2400
+    name: 'Oval Ring',
+    imgSrc: 'img/ring07.jpg',
+    price: 2500
   },
   {
+    sku: 'H',
     url: '#',
-    title: 'Pear Ring',
-    imgSrc: 'img/ring3.jpg',
-    price: 2400
+    name: 'Pear Ring',
+    imgSrc: 'img/ring08.jpg',
+    price: 3500
   },
   {
+    sku: 'I',
     url: '#',
-    title: 'Cushion Ring',
-    imgSrc: 'img/ring4.jpg',
-    price: 2400
+    name: 'Cushion Ring',
+    imgSrc: 'img/ring09.jpg',
+    price: 4500
   },
   {
+    sku: 'J',
     url: '#',
-    title: 'Round Ring',
-    imgSrc: 'img/ring5.jpg',
-    price: 2400
+    name: 'Round Ring',
+    imgSrc: 'img/ring10.jpg',
+    price: 1250
   },
   {
+    sku: 'K',
     url: '#',
-    title: 'Heart Ring',
-    imgSrc: 'img/ring1.jpg',
-    price: 2400
+    name: 'Heart Ring',
+    imgSrc: 'img/ring11.jpg',
+    price: 2250
   },
   {
+    sku: 'L',
     url: '#',
-    title: 'Oval Ring',
-    imgSrc: 'img/ring2.jpg',
-    price: 2400
+    name: 'Oval Ring',
+    imgSrc: 'img/ring12.jpg',
+    price: 3250
   },
   {
+    sku: 'M',
     url: '#',
-    title: 'Pear Ring',
-    imgSrc: 'img/ring3.jpg',
-    price: 2400
+    name: 'Pear Ring',
+    imgSrc: 'img/ring13.jpg',
+    price: 4250
   },
   {
+    sku: 'N',
     url: '#',
-    title: 'Cushion Ring',
-    imgSrc: 'img/ring4.jpg',
-    price: 2400
+    name: 'Cushion Ring',
+    imgSrc: 'img/ring14.jpg',
+    price: 1600
   },
   {
+    sku: 'O',
     url: '#',
-    title: 'Round Ring',
-    imgSrc: 'img/ring5.jpg',
-    price: 2400
+    name: 'Round Ring',
+    imgSrc: 'img/ring15.jpg',
+    price: 2600
   }
 ];
 
 React.render(
-  <ProductList data={data} />,
+  <ProductDisplay data={data} />,
   document.getElementById('content')
 );
+
+// React.render(
+//   <Row />,
+//   document.getElementById('content')
+// );

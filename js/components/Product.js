@@ -7,7 +7,7 @@ const Product = React.createClass({
     return (
       <li>
         <div className='engagement-ring text-center'>
-          <ProductHeader>{this.props.title}</ProductHeader>
+          <ProductHeader>{this.props.productTitle}</ProductHeader>
           <a href={this.props.url} title={this.props.title}>
             <img src={this.props.imgSrc} />
           </a>
