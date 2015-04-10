@@ -1,0 +1,3 @@
+Fix wonky animations
+
+If you are on page X, and you change the items per page, and there are less than X pages, it messes up a bit. Clicking another page will sort itself out, but it doesn't look nice
