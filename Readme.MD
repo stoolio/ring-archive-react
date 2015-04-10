@@ -37,9 +37,9 @@ Info Stuff
 
 This will watch for changes to your source files in:
 
-* ./js/**/*.js
-* ./scss/**/*.scss
-* ./public/**/*.html (the 'server' folder)
+* `./js/**/*.js`
+* `./scss/**/*.scss`
+* `./public/**/*.html`
 
 It will then automagically refresh your page.
 
