@@ -1,20 +1,21 @@
 .product-enter {
   opacity: 0.00;
-  // transform: translateX(200em);
-  transition: all .8s ease-out;
+  transform: scale(0.2);
+  transition: all .5s ease-out;
 
   &.product-enter-active {
     opacity: 1.00;
-    // transform: translateX(0em);
+    transform: scale(1.0);
   }
 }
 
 .product-leave {
-  opacity: 0.01;
-  // transform: translateX(-200em);
-  transition: all .1s ease-in;
+  opacity: 1.00;
+  transform: scale(1.0);
+  transition: all .5s ease-in;
 
   &.product-leave-active {
     opacity: 0.00;
+    transform: scale(0.2);
   }
 }

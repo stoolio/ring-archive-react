@@ -1,4 +1,6 @@
 import React from 'react';
+import FullRow from './structure/FullRow';
+import Header from './components/Header';
 import ProductDisplay from './components/ProductDisplay';
 // import Row from './structure/Row';
 
@@ -111,7 +113,14 @@ var data = [
 ];
 
 React.render(
-  <ProductDisplay data={data} />,
+  <FullRow>
+    <FullRow>
+      <Header />
+    </FullRow>
+    <FullRow>
+      <ProductDisplay data={data} />
+    </FullRow>
+  </FullRow>,
   document.getElementById('content')
 );
 

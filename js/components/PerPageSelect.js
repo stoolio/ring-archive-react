@@ -1,12 +1,6 @@
 import React from 'react';
 
 const PerPageSelect = React.createClass({
-  getInitialState() {
-    return {
-      value: '6'
-    };
-  },
-
   optionFor(num) {
     return (
       <option value={num}>{num}</option>
@@ -21,7 +15,7 @@ const PerPageSelect = React.createClass({
   render() {
     return (
       <label>Items Per Page
-        <select onChange={this.props.handleSelect}>
+        <select value={this.props.perPage} onChange={this.props.handleSelect}>
           {this.optionFor(3)}
           {this.optionFor(6)}
           {this.optionFor(9)}
