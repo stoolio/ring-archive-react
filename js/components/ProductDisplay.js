@@ -63,7 +63,6 @@ const ProductDisplay = React.createClass({
       if(this.state.currentSort === 'lowest') {
         products = products.reverse();
       }
-    } else {
     }
     return products;
   },

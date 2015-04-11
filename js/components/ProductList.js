@@ -7,8 +7,7 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 const ProductList = React.createClass({
   getInitialState() {
     return {
-      products: this.props.products,
-      classes: ''
+      products: this.props.products
     };
   },
 
@@ -20,7 +19,7 @@ const ProductList = React.createClass({
     });
 
     return (
-      <ReactCSSTransitionGroup component='ul' transitionName='product' id='engagement-ring-archive' className={'small-block-grid-2 large-block-grid-3' + this.state.classes}>
+      <ReactCSSTransitionGroup component='ul' transitionName='product' id='engagement-ring-archive' className='small-block-grid-2 large-block-grid-3'>
         {products}
       </ReactCSSTransitionGroup>
     );
