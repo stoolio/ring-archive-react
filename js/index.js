@@ -124,6 +124,8 @@ React.render(
   document.getElementById('content')
 );
 
+window.React = React;
+
 // React.render(
 //   <Row />,
 //   document.getElementById('content')

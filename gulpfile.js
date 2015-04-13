@@ -8,6 +8,7 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var sass = require('gulp-sass');
 var babelify = require('babelify');
+require('minifyify');
 
 var browserifyOpts = {
   entries: ['./js/index.js'],
@@ -17,8 +18,9 @@ var browserifyOpts = {
   cache: {},
   packageCache: {}
 };
-
-var bundler = watchify(browserify(browserifyOpts));
+var browify = browserify(browserifyOpts);
+browify.plugin('minifyify', {map: './app.js.map', output: './public/js/app.js.map'});
+var bundler = watchify(browify);
 
 gulp.task('js', bundle);
 bundler.on('update', bundle);

@@ -1,4 +1,7 @@
 import React from 'react';
+import 'react/addons';
+
+var cx = React.addons.classSet;
 
 const Paginator = React.createClass({
   pageArray() {
@@ -11,8 +14,8 @@ const Paginator = React.createClass({
     let handleClick = this.props.handleClick;
     let pageLinks = this.pageArray().map(function(i) {
       return (
-        <li key={'page' + i} className={currentPage === i ? 'current' : ''}>
-          <a href='#' onClick={handleClick}>
+        <li key={i} className={cx({current: currentPage === i})}>
+          <a href='#' onClick={handleClick} data-page={i}>
             {i}
           </a>
         </li>
@@ -20,7 +23,13 @@ const Paginator = React.createClass({
     });
     return (
       <ul className='pagination'>
+        <li key='prev' className={cx({unavailable: currentPage === 1}, 'arrow')}>
+          <a href='#' onClick={handleClick} data-page={currentPage - 1}>&laquo;</a>
+        </li>
         {pageLinks}
+        <li key='next' className={cx({unavailable: currentPage === this.props.totalPages}, 'arrow')}>
+          <a href='#' onClick={handleClick} data-page={currentPage + 1}>&raquo;</a>
+        </li>
       </ul>
     );
   }
