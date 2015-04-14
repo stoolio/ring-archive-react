@@ -2,6 +2,9 @@ import React from 'react';
 import FullRow from './structure/FullRow';
 import Header from './components/Header';
 import ProductDisplay from './components/ProductDisplay';
+
+import Animate from './lib/CSSAnimator';
+import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 // import Row from './structure/Row';
 
 var data = [
@@ -125,8 +128,5 @@ React.render(
 );
 
 window.React = React;
-
-// React.render(
-//   <Row />,
-//   document.getElementById('content')
-// );
+window.Animate = Animate;
+window.ReactTransitionEvents = ReactTransitionEvents;

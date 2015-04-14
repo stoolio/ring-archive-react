@@ -52,7 +52,7 @@ const ProductList = React.createClass({
 
   render() {
     let self = this;
-    let itemWidth = this.state.width / this.props.perRow;
+    let itemWidth = round(this.state.width / this.props.perRow);
 
     var products = this.props.products.map(function(product, i) {
       // if(leaving[product.key]) {

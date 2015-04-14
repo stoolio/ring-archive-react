@@ -18,9 +18,9 @@ var browserifyOpts = {
   cache: {},
   packageCache: {}
 };
-var browify = browserify(browserifyOpts);
-browify.plugin('minifyify', {map: './app.js.map', output: './public/js/app.js.map'});
-var bundler = watchify(browify);
+// var browify = browserify(browserifyOpts);
+// browify.plugin('minifyify', {map: './app.js.map', output: './public/js/app.js.map'});
+var bundler = watchify(browserify(browserifyOpts));
 
 gulp.task('js', bundle);
 bundler.on('update', bundle);
