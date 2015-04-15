@@ -8,7 +8,7 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var sass = require('gulp-sass');
 var babelify = require('babelify');
-require('minifyify');
+// require('minifyify');
 
 var browserifyOpts = {
   entries: ['./js/index.js'],
