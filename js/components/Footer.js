@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 const Footer = React.createClass({
   render() {
@@ -10,26 +11,26 @@ const Footer = React.createClass({
             <div className='small-6 large-3 columns'>
               <ul className='side-nav'>
                 <li>
-                  <a href='http://gale.diamonds/diamonds/'>Diamonds</a>
+                  <Link to='diamonds'>Diamonds</Link>
                 </li>
                 <li>
-                  <a href='http://gale.diamonds/engagement-rings/'>Engagement Rings</a>
+                  <Link to='engagement-rings'>Engagement Rings</Link>
                 </li>
                 <li>
-                  <a href='http://gale.diamonds/policies/privacy/'>Privacy Policy</a>
+                  <Link to='policy' params={{policy: 'privacy'}}>Privacy Policy</Link>
                 </li>
               </ul>
             </div>
             <div className='small-6 large-3 columns'>
               <ul className='side-nav'>
                 <li>
-                  <a href='http://gale.diamonds/policies/returns/'>Return Policy</a>
+                  <Link to='policy' params={{policy: 'return'}}>Return Policy</Link>
                 </li>
                 <li>
-                  <a href='http://gale.diamonds/policies/shipping/'>Shipping Policy</a>
+                  <Link to='policy' params={{policy: 'shipping'}}>Shipping Policy</Link>
                 </li>
                 <li>
-                  <a href='http://gale.diamonds/contact/'>Customer Service</a>
+                  <Link to='policy' params={{policy: 'customer-service'}}>Customer Service</Link>
                 </li>
               </ul>
             </div>
