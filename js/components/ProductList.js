@@ -62,15 +62,16 @@ const ProductList = React.createClass({
       // } else {
         // leaving={} onLeave={}
         return (
-          <Product index={i + 1} perRow={self.props.perRow} itemWidth={itemWidth} test={product.sku} key={product.sku} url={product.url} productTitle={product.name} imgSrc={product.imgSrc} price={product.price} />
+          <Product index={i + 1} perRow={self.props.perRow} itemWidth={itemWidth} key={product.sku} data={product} />
+          // <Product index={i + 1} perRow={self.props.perRow} itemWidth={itemWidth} test={product.sku} key={product.sku} url={product.url} productTitle={product.name} imgSrc={product.imgSrc} price={product.price} />
         );
       // }
     });
 
     return (
-      <ul component='ul' transitionName='product' id='engagement-ring-archive' >
+      <div style={{height: '650px'}} component='ul' transitionName='product' id='engagement-ring-archive' >
         {this.state.width ? products : ''}
-      </ul>
+      </div>
     );
   }
 

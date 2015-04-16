@@ -6,7 +6,7 @@ const FullRow = React.createClass({
   render() {
     return (
       <Row>
-        <Column>
+        <Column large='12'>
           {this.props.children}
         </Column>
       </Row>

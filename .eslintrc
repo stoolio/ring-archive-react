@@ -8,6 +8,7 @@
 
   "rules": {
     "quotes": [2, "single"],
-    "strict": false
+    "strict": false,
+    "no-underscore-dangle": false
   }
 }

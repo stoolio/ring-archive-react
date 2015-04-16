@@ -1,3 +1,5 @@
+/* eslint comma-spacing: 0 */
+
 function transform1(name, x = 0, unit = '') {
   return `${name}(${x}${unit})`;
 }
@@ -85,7 +87,7 @@ function skew(x, y) {
   ];
 }
 
-let funcs = {
+export default {
   translateX,
   translateY,
   translateZ,
@@ -104,5 +106,3 @@ let funcs = {
   skewY,
   skew
 };
-
-export default funcs;

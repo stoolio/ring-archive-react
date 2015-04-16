@@ -2,10 +2,6 @@ import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 import queueAnimation from './rAFQueue';
 import t from './transformHelpers';
 
-function CSSAnimator() {
-
-}
-
 window.opts = [
   {
     transitionDuration: '1s',
@@ -63,31 +59,23 @@ function waitForAllEvents() {
 //Special animation function
 let doAnimation = function() {
 
-  // Requires hackish workaround for sanity:
-  // in startAnimation a default opacity/transform
-  // are set if none exist
-  // if(this._compareStyles(this._getAnim())) {
-  //   this.index += 1;
-  //   setTimeout(this.doAnimation, this._getAnim().transitionDuration);
-  //   return;
-  // }
-
-  let last = this.direction === 1 ? (this.index >= (this.lastIndex - 1)) : (this.index < 0);
+  let isLast = !this.reverse ? (this.index >= (this.lastIndex - 1)) : (this.index < 0);
 
   let anim = this._getAnim();
 
   for(var prop in anim) {
-    if(prop.includes('transition')) continue;
+    if(prop.includes('transition')) {
+      continue;
+    }
     propsAnimated.push(prop);
   }
 
   // I hate this, but transform will emit a change on any slight change
   // but opacity won't
-  if( !last &&
-      anim.opacity === this.styles.opacity ||
-      (anim.opacity === 1 && this.styles.opacity === '')
-    )
+  if(!isLast && anim.opacity === this.styles.opacity ||
+     (anim.opacity === 1 && this.styles.opacity === '')) {
     propsAnimated.splice(propsAnimated.indexOf('opacity'), 1);
+  }
 
   queueAnimation(function() {
     console.log('animating: ', propsAnimated.join(', '));
@@ -95,17 +83,17 @@ let doAnimation = function() {
     for(var i in anim) {
       this.styles[i] = anim[i];
     }
-    this.index = this.index + (!this.reverse ? 1 : -1); //this.direction;
+    this.index = this.index + (!this.reverse ? 1 : -1);
   }.bind(this));
 
-  if(last) {
+  if(isLast) {
     ReactTransitionEvents.removeEndEventListener(this.el, this.waitForAllEvents);
     ReactTransitionEvents.addEndEventListener(this.el, this.onEnd);
   }
 };
 
 let startAnimation = function() {
-  this.index = (!this.reverse ? 0 : this.lastIndex - 1); //this.direction === 1 ? 0 : this.lastIndex - 1;
+  this.index = (!this.reverse ? 0 : this.lastIndex - 1);
   let emergencyThreshold = this.totalDuration + this.delay + 500 + (this.reverse ? parseInt(this.anims[0].transitionDuration) * 1000 : 0);
   setTimeout(function() {
     ReactTransitionEvents.addEndEventListener(this.el, this.waitForAllEvents);
@@ -115,11 +103,9 @@ let startAnimation = function() {
     console.log('emergency!!');
     this.onEnd();
   }.bind(this), emergencyThreshold);
-  console.log('timer: ', this.emergencyTimer);
-  console.log('duration: ', emergencyThreshold);
 };
 
-let onEnd = function(e) {
+let onEnd = function() {
   console.log('done!');
   clearTimeout(this.emergencyTimer);
   // Just in case there's an issue and the setTimeout calls this function
@@ -128,7 +114,7 @@ let onEnd = function(e) {
   propsAnimated.length = 0;
 
   if(this.repeating) {
-    this.startAnimation();
+    this.initialFn.call(this);
   }
 
   // otherwise, cleanup our inline styles if necessary
@@ -141,7 +127,7 @@ let onEnd = function(e) {
   // we are no longer animating, let it happen again
   this.animating = false;
 
-  // callback?
+  // callback? used for bounce aka start->trats
   if(typeof this.cb === 'function') {
     let fn = this.cb;
     this.cb = undefined;
@@ -153,14 +139,14 @@ function Animate(el, opts) {
   this.el = el;
 
   // Sane defaults
-  this.direction = 1;
+  this.reverse = false;
   this.animating = false;
   this.index = 0;
   this.shouldReset = true;
 
   // This is messed up, I should put them on the prototype
   // but they shouldn't be part of the API, so I might
-  // _ name them...
+  // _name them...
   this.startAnimation = startAnimation.bind(this);
   this.onEnd = onEnd.bind(this);
   this.doAnimation = doAnimation.bind(this);
@@ -168,6 +154,7 @@ function Animate(el, opts) {
 
   if(Array.isArray(el)) {
     // insert code to handle an array of items to animate
+    return;
   } else if(typeof el !== 'undefined') {
     this.styles = el.style;
   } else {
@@ -175,68 +162,91 @@ function Animate(el, opts) {
   }
 
   this.originalStyles = this._getStyles();
-  console.log('orig duration: ', this.originalStyles.transitionDuration);
-  this.currentStyles = this._getStyles();
+  // Not using this currently, but I had an idea
+  // to use it. This is here if I remember...
+  // this.currentStyles = this._getStyles();
   this.allChanged = [];
   this.totalDuration = 0;
 
+  let lastAnimProps = {
+    transitionDuration: this.originalStyles.transitionDuration,
+    transitionTimingFunction: this.originalStyles.transitionTimingFunction
+  };
+
   this.anims = opts.map(function(anim) {
-    if(anim.transform && typeof anim.transform !== 'string')
+    var processedAnim;
+    if(anim.transform && typeof anim.transform !== 'string') {
       anim.transform = makeAnim(anim.transform);
-    for(var i in anim) {
+    }
+    // This monstrosity supports carrying over stats
+    // For instance, enter one transitionDuration, and
+    // it will be used for all steps
+    processedAnim = {
+      transitionDuration: anim.transitionDuration || lastAnimProps.transitionDuration,
+      transitionTimingFunction: anim.transitionTimingFunction || lastAnimProps.transitionTimingFunction
+    };
+    if(anim.opacity !== undefined) {
+      processedAnim.opacity = anim.opacity;
+    }
+    if(anim.transform !== undefined) {
+      processedAnim.transform = anim.transform;
+    }
+    lastAnimProps.transitionDuration = processedAnim.transitionDuration;
+    lastAnimProps.transitionTimingFunction = processedAnim.transitionTimingFunction;
+    this.totalDuration += parseInt(processedAnim.transitionDuration) * 1000;
+    for(var i in processedAnim) {
       if(i.includes('transition')) {
-        if(i === 'transitionDuration') {
-          this.totalDuration += parseInt(anim[i]) * 1000;
-        }
         i = 'transition';
       }
-      if(this.allChanged.indexOf(i) === -1) this.allChanged.push(i);
+      if(this.allChanged.indexOf(i) === -1) {
+        this.allChanged.push(i);
+      }
     }
-    return anim;
+    return processedAnim;
   }.bind(this));
 
+  console.log('duration: ', this.totalDuration);
   this.lastIndex = this.anims.length;
 }
 
-function callOnNth(fn, nth, self) {
-  var n = 0;
-  return function() {
-    n += 1;
-    if(n === nth) {
-      fn.call(self);
-    }
-  }
-}
-
-Animate.prototype =  {
+Animate.prototype = {
   start: function(delay, repeating) {
-    if(this.animating) return;
+    if(this.animating) {
+      return;
+    }
 
-    this.direction = 1;
     this.reverse = false;
+    this.initialFn = this.initialFn || this.trats;
 
     this._begin(delay, repeating);
   },
+  // originally it was called reverse, but it didn't work.
+  // Then I saw it. This is still not a good name.
   trats: function(delay, repeating) {
-    if(this.animating) return;
+    if(this.animating){
+      return;
+    }
 
-    this.direction = -1;
     this.reverse = true;
+    this.initialFn = this.initialFn || this.trats;
 
     this._begin(delay, repeating);
   },
   bounce: function(delay, repeating) {
-    if(this.animating) return;
+    if(this.animating){
+      return;
+    }
 
     this.cb = this.trats;
+    this.initialFn = this.trats;
 
     this.start(delay, repeating);
   },
   stop: function() {
-
+    // Figure out how to gracefully stop and enter code here
   },
   pause: function() {
-
+    // See above, but really, this should be exactly the same
   },
   reset: function(reset = true) {
     this.shouldReset = reset;
@@ -252,29 +262,21 @@ Animate.prototype =  {
       transition: this.styles.transition,
       transitionDuration: this.styles.transitionDuration,
       transitionProperty: this.styles.transitionProperty,
+      transitionTimingFunction: this.styles.transisionTimingFunction,
       transform: this.styles.transform,
       opacity: this.styles.opacity
     };
   },
-  _compareStyles: function(compare, all = false) {
-    let current = this._getStyles();
-    delete current['transition'];
-    for(var i in current) {
-      if(current[i] !== compare[i]) {
-        return false;
-      }
-    }
-    return true;
-  },
   _getAnim: function() {
+    // This is to support backwards animations
+    // It returns the original styles, with sane defaults
     if(this.index === -1) {
       let defaults = {
         transform: 'translate3d(0px, 0px, 0px)',
         scale: 1,
         transitionDuration: this.anims[0].transitionDuration,
-        transitionProperty: this.anims[0].transitionDuration
+        transitionTimingFunction: this.anims[0].transitionTimingFunction
       };
-      console.log(this.anims[0].transitionDuration, defaults.transitionDuration);
       let length = defaults.length,
           index = -1;
       while(++index < length) {
@@ -283,10 +285,10 @@ Animate.prototype =  {
           defaults[key] = this.originalStyles[key];
         }
       }
-      console.log('duration: ', defaults.transitionDuration);
       return defaults;
+    } else {
+      return this.anims[this.index];
     }
-    return this.anims[this.index];
   }
 };
 

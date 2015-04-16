@@ -2,6 +2,7 @@ import React from 'react';
 import ProductHeader from './ProductHeader';
 import ProductFooter from './ProductFooter';
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
+import {Link} from 'react-router';
 import queueAnimation from '../lib/rAFQueue';
 
 function translate(x, y, z) {
@@ -96,12 +97,6 @@ const Product = React.createClass({
     };
   },
 
-  // differentEffect(data) {
-  //   let self = this;
-  //   let el = React.findDOMNode(self);
-  //   el
-  // },
-
   componentDidMount() {
     queueAnimation(this.setPosition(this.props));
   },
@@ -118,31 +113,16 @@ const Product = React.createClass({
     queueAnimation(this.animatePosition(nextProps));
   },
 
-  // componentDidUpdate(prevProps) {
-  //   queueAnimation(this.setPosition(this.props));
-  // },
-
-  // componentWillUnmount() {
-  //   let self = this;
-  //   let el = React.findDOMNode(self);
-  //   el.classList.add('leaving');
-  // },
-
   render() {
-    // let coords = this.getCoords(this.props.index, this.props.itemWidth, this.props.perRow);
-    let style = {
-      // position: 'absolute',
-      // transform: `translate(${coords.x}px, ${coords.y}px)`
-    };
-
+    let product = this.props.data;
     return (
       <li style={{width: this.props.itemWidth}}>
         <div className='engagement-ring text-center'>
-          <ProductHeader>{this.props.productTitle}</ProductHeader>
-          <a href={this.props.url} title={this.props.title}>
-            <img src={this.props.imgSrc} />
-          </a>
-          <ProductFooter price={this.props.price} />
+          <ProductHeader>{product.name}</ProductHeader>
+          <Link to='ring-detail' params={product}>
+            <img src={product.img} />
+          </Link>
+          <ProductFooter price={product.price} />
         </div>
       </li>
     );
