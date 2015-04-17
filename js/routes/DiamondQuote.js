@@ -1,7 +1,10 @@
 import React from 'react';
-import * as f from '../components/forms/All';
+import {Budget, CaratWeight, Comments, ContactInfo, DiamondClarity, DiamondColor, Email, Name, Phone, Quality, ShapeSelector, State} from '../components/forms/All';
 
 const DiamondQuote = React.createClass({
+  componentDidMount() {
+    $(document).foundation('magellan', 'reflow');
+  },
   render() {
     return (
       <div>
@@ -52,7 +55,7 @@ const DiamondQuote = React.createClass({
               <div className='row'>
                 <div className='small-8 medium-4 small-centered medium-uncentered columns'>
                   <a data-magellan-destination='shape' name='shape'></a>
-                  <f.ShapeSelector />
+                  <ShapeSelector />
                 </div>
                 <div className='medium-8 columns'>
                   <div className='row'>
@@ -60,10 +63,10 @@ const DiamondQuote = React.createClass({
                       <div className='row'>
                         <div className='x-small-12 small-6 columns'>
                           <a data-magellan-destination='size-budget' name='size-budget'></a>
-                          <f.CaratWeight />
+                          <CaratWeight />
                         </div>
                         <div className='x-small-12 small-6 columns'>
-                          <f.Budget />
+                          <Budget />
                         </div>
                       </div>
                     </div>
@@ -71,13 +74,13 @@ const DiamondQuote = React.createClass({
                   <div className='row'>
                     <div className='small-6 medium-4 columns'>
                       <a data-magellan-destination='quality' name='quality'></a>
-                      <f.DiamondColor />
+                      <DiamondColor />
                     </div>
                     <div className='small-6 medium-4 columns'>
-                      <f.DiamondClarity />
+                      <DiamondClarity />
                     </div>
                     <div className='medium-4 columns'>
-                      <f.Quality label='Cut' />
+                      <Quality label='Cut' />
                     </div>
                   </div>
                 </div>
@@ -85,11 +88,11 @@ const DiamondQuote = React.createClass({
               <div className='row'>
                 <div className='large-8 large-centered columns'>
                   <a data-magellan-destination='contact' name='contact'></a>
-                  <f.ContactInfo />
+                  <ContactInfo />
                   <div className='row'>
                     <div className='large-12 columns'>
                       <a data-magellan-destination='comments' name='comments'></a>
-                      <f.Comments />
+                      <Comments />
                     </div>
                   </div>
                 </div>

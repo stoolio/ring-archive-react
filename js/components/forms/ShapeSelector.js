@@ -24,7 +24,7 @@ const ShapeSelector = React.createClass({
         <ul className='small-block-grid-3 text-center' id='shape-selector'>
           {diamondSelect}
         </ul>
-        <Select value={'?'} onChange={() => {}} options={diamonds} id='shape-list' multiple='true' name='shape[]' size='7' style={{display: 'none'}} />
+        <Select value={[]} onChange={() => {}} options={diamonds} id='shape-list' multiple='true' name='shape[]' size='7' style={{display: 'none'}} />
       </label>
     );
   }

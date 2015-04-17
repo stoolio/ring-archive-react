@@ -91,10 +91,10 @@ const ProductDisplay = React.createClass({
             <Sorter perPage={this.state.perPage} handleSort={this.handleSort} />
           </Column>
           <Column large='4'>
-            <Select label='Items per Row' options={[1, 2, 3, 4, 5, 6]} value={this.state.perRow} handleSelect={this.setPerRow} />
+            <Select label='Items per Row' options={[1, 2, 3, 4, 5, 6]} value={this.state.perRow} onChange={this.setPerRow} />
           </Column>
           <Column large='4'>
-            <Select label='Items Per Page' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} value={this.state.perPage} handleSelect={this.setPerPage} />
+            <Select label='Items Per Page' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} value={this.state.perPage} onChange={this.setPerPage} />
           </Column>
         </Row>
         <FullRow>

@@ -21,7 +21,7 @@ const MenuLink = React.createClass({
     let isActive = router.isActive(this.props.to, this.props.params, this.props.query);
     let classes = cx({
       active: isActive,
-      hasDropdown: typeof this.props.children !== 'undefined'
+      'has-dropdown': typeof this.props.children !== 'undefined'
     });
     return (
       <li className={classes}>
@@ -49,7 +49,7 @@ const Menu = React.createClass({
                 <MenuLink to='home' />
                 <MenuLink to='engagement-rings' />
                 <MenuLink to='diamonds'>
-                  <ul class='dropdown'>
+                  <ul className='dropdown'>
                     <li>
                       <Link to='diamonds/quote'>
                         Request a Quote

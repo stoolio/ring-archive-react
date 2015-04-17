@@ -1,4 +1,5 @@
 import React from 'react';
+import {Row, Column} from '../../structure/All';
 
 const CaratWeight = React.createClass({
   render() {
