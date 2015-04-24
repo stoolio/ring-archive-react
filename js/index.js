@@ -1,19 +1,14 @@
+require('../scss/app.scss');
 import React from 'react';
-// import * as Router from 'react-router';
-// let Route = Router.Route;
-// let Link = Router.Link;
-// let RouteHandler = Router.RouteHandler;
-// let DefaultRoute = Router.DefaultRoute;
-// let NotFoundRoute = Router.NotFoundRoute;
 
 import {Route, NotFoundRoute, DefaultRoute, Link, RouteHandler, run} from 'react-router';
 
-import {Home, EngagementRings, EngagementRing, Diamonds, DiamondQuote, About, Policy, Contact, RootNotFound} from './routes/All';
+import {Home, EngagementRings, EngagementRing, Diamonds, DiamondQuote, About, Policy, Contact, RootNotFound} from './routes/';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import {Row, Column} from './structure/all';
+import {Row, Column} from './structure/';
 
 const App = React.createClass({
   render() {

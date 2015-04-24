@@ -1,5 +1,5 @@
 import React from 'react';
-import {Column} from '../structure/All';
+import {Column} from '../structure/';
 import Menu from './Menu';
 import Breadcrumbs from './Breadcrumbs';
 

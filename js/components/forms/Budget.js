@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Column} from '../../structure/All';
+import {Row, Column} from '../../structure/';
 
 const Budget = React.createClass({
     render() {

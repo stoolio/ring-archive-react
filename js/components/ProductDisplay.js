@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTransitionEvents from 'react/lib/ReactTransitionEvents';
 
-import {Row, Column, FullRow} from '../structure/All';
+import {Row, Column, FullRow} from '../structure/';
 
 import ProductList from './ProductList';
 import Paginator from './Paginator';
@@ -34,8 +34,7 @@ const ProductDisplay = React.createClass({
   },
 
   handleSort(e) {
-    let text = e.target.innerText;
-    var sort = text.toLowerCase();
+    let sort = (e.target.innerText || e.target.textContent).toLowerCase();
     if(this.state.currentSort === sort) {
       this.setSort(false);
     } else {

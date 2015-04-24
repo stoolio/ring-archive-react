@@ -1,3 +1,11 @@
-Fix wonky animations
+PRETTY MUCH DONE - Fix wonky animations
 
 If you are on page X, and you change the items per page, and there are less than X pages, it messes up a bit. Clicking another page will sort itself out, but it doesn't look nice
+
+Convert foundation js components to Reactified version and nuke jQuery and foundation js
+
+Integrate actual product data
+
+Setup anonymous sessions, as well as sign-up. This will require a server.
+
+RefluxJS is your friend.
